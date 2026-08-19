@@ -1,4 +1,7 @@
-let time = 60;
+const workTime = 1500;
+const breakTime = 300 ;
+let mode = "work"; 
+let time = workTime ;
 let timerId = null;
 
 const timer = document.getElementById("timer");
@@ -24,9 +27,13 @@ startBtn.addEventListener("click", () => {
     updateDisplay();
 
     if (time <= 0) {
-      clearInterval(timerId);
-      timerId = null;
-      alert("時間終了！");
+      if (mode === "work") {
+        // ここに「作業→休憩」の処理
+
+    } else {
+        // ここに「休憩→作業」の処理
+    }
+
     }
   }, 1000);
 });
