@@ -28,9 +28,13 @@ startBtn.addEventListener("click", () => {
 
     if (time <= 0) {
       if (mode === "work") {
+        mode = "break" ;
+        time = breakTime;
         // ここに「作業→休憩」の処理
 
     } else {
+      mode = "work" ;
+      time = workTime;
         // ここに「休憩→作業」の処理
     }
 
