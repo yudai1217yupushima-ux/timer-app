@@ -1,6 +1,6 @@
 const workTime = 1500;
 const breakTime = 300 ;
-let mode = "work"; 
+let mode = "work" ; 
 let time = workTime ;
 let timerId = null;
 
@@ -24,7 +24,7 @@ startBtn.addEventListener("click", () => {
   timerId = setInterval(() => {
     time--;
 
-    updateDisplay();
+  
 
     if (time <= 0) {
       if (mode === "work") {
@@ -37,9 +37,14 @@ startBtn.addEventListener("click", () => {
       time = workTime;
         // ここに「休憩→作業」の処理
     }
-
     }
+
+    updateDisplay();
+
   }, 1000);
+
+
+
 });
 
 stopBtn.addEventListener("click", () => {
@@ -50,6 +55,6 @@ stopBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   clearInterval(timerId);
   timerId = null;
-  time = 60;
+  time = workTime;
   updateDisplay();
 });
