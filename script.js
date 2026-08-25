@@ -1,5 +1,5 @@
-const workTime = 1500;
-const breakTime = 300 ;
+const workTime = 10;
+const breakTime = 5 ;
 let mode = "work" ; 
 let time = workTime ;
 let timerId = null;
@@ -8,6 +8,7 @@ const timer = document.getElementById("timer");
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 const resetBtn = document.getElementById("reset");
+const modeDisplay = document.getElementById("mode");
 
 function updateDisplay() {
   let minutes = String(Math.floor(time / 60)).padStart(2, "0");
@@ -27,17 +28,20 @@ startBtn.addEventListener("click", () => {
   
 
     if (time <= 0) {
-      if (mode === "work") {
-        mode = "break" ;
-        time = breakTime;
-        // ここに「作業→休憩」の処理
+  if (mode === "work") {
+    mode = "break";
+    time = breakTime;
+  } else {
+    mode = "work";
+    time = workTime;
+  }
 
-    } else {
-      mode = "work" ;
-      time = workTime;
-        // ここに「休憩→作業」の処理
-    }
-    }
+  if (mode === "work") {
+    modeDisplay.textContent = "作業中";
+  } else {
+    modeDisplay.textContent = "休憩中";
+  }
+}
 
     updateDisplay();
 
@@ -56,5 +60,15 @@ resetBtn.addEventListener("click", () => {
   clearInterval(timerId);
   timerId = null;
   time = workTime;
+  mode = "work";
+  if (mode === "work") {
+
+  modeDisplay.textContent = "作業中";
+
+} else {
+
+  modeDisplay.textContent = "休憩中";
+
+}
   updateDisplay();
 });
