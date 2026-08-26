@@ -14,6 +14,16 @@ function updateDisplay() {
   let minutes = String(Math.floor(time / 60)).padStart(2, "0");
   let seconds = String(time % 60).padStart(2, "0");
 
+   if (mode === "work") {
+
+  modeDisplay.textContent = "作業中";
+
+} else {
+
+  modeDisplay.textContent = "休憩中";
+
+}
+
   timer.textContent = `${minutes}:${seconds}`;
 }
 
@@ -36,12 +46,7 @@ startBtn.addEventListener("click", () => {
     time = workTime;
   }
 
-  if (mode === "work") {
-    modeDisplay.textContent = "作業中";
-  } else {
-    modeDisplay.textContent = "休憩中";
   }
-}
 
     updateDisplay();
 
@@ -61,14 +66,6 @@ resetBtn.addEventListener("click", () => {
   timerId = null;
   time = workTime;
   mode = "work";
-  if (mode === "work") {
-
-  modeDisplay.textContent = "作業中";
-
-} else {
-
-  modeDisplay.textContent = "休憩中";
-
-}
+ 
   updateDisplay();
 });
