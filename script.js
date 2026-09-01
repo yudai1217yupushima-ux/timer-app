@@ -10,6 +10,7 @@ const stopBtn = document.getElementById("stop");
 const resetBtn = document.getElementById("reset");
 const modeDisplay = document.getElementById("mode");
 const popUp = document.getElementById("popup");
+const restBtn = document.getElementById("rest");
 
 function updateDisplay() {
   let minutes = String(Math.floor(time / 60)).padStart(2, "0");
@@ -45,6 +46,30 @@ startBtn.addEventListener("click", () => {
     updateDisplay();
   }, 1000);
 });
+
+restBtn.addEventListener("click", () => {
+  popUp.style.display = "none";
+  mode = "break";
+  time = breakTime;
+
+ timerId = setInterval(() => {
+    time--;
+    if (time <= 0) {
+      popUp.style.display = "block";
+      clearInterval(timerId);
+      timerId = null;
+   if (mode === "work") {
+    mode = "break";
+    time = breakTime;
+  } else {
+    mode = "work";
+    time = workTime;
+    }
+  }
+    updateDisplay();
+  }, 1000);
+});
+
 
 stopBtn.addEventListener("click", () => {
   clearInterval(timerId);
