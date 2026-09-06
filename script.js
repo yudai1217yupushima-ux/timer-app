@@ -10,6 +10,7 @@ const stopBtn = document.getElementById("stop");
 const resetBtn = document.getElementById("reset");
 const modeDisplay = document.getElementById("mode");
 const popUp = document.getElementById("popup");
+const popupMessage = document.getElementById("popupMessage");
 const restBtn = document.getElementById("rest");
 
 function updateDisplay() {
@@ -32,6 +33,12 @@ startBtn.addEventListener("click", () => {
   timerId = setInterval(() => {
     time--;
     if (time <= 0) {
+      if (mode === "work") {
+          popupMessage.textContent = "作業時間終了！";
+           } else {
+           popupMessage.textContent = "休憩時間終了！";
+           }
+
       popUp.style.display = "block";
       clearInterval(timerId);
       timerId = null;
@@ -55,6 +62,13 @@ restBtn.addEventListener("click", () => {
  timerId = setInterval(() => {
     time--;
     if (time <= 0) {
+
+       if (mode === "work") {
+          popupMessage.textContent = "作業時間終了！";
+           } else {
+           popupMessage.textContent = "休憩時間終了！";
+           }
+
       popUp.style.display = "block";
       clearInterval(timerId);
       timerId = null;
