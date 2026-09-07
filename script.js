@@ -12,6 +12,7 @@ const modeDisplay = document.getElementById("mode");
 const popUp = document.getElementById("popup");
 const popupMessage = document.getElementById("popupMessage");
 const restBtn = document.getElementById("rest");
+const finishBtn = document.getElementById("finish");
 
 function updateDisplay() {
   let minutes = String(Math.floor(time / 60)).padStart(2, "0");
@@ -27,31 +28,33 @@ function updateDisplay() {
 
 updateDisplay();
 
-startBtn.addEventListener("click", () => {
-  if (timerId !== null) return;
 
-  timerId = setInterval(() => {
+function startTimer() {
+timerId = setInterval(() => {
     time--;
     if (time <= 0) {
-      if (mode === "work") {
+     if (mode === "work") {
           popupMessage.textContent = "作業時間終了！";
-           } else {
+          restBtn.style.display = "inline-block";  
+        } else {
            popupMessage.textContent = "休憩時間終了！";
-           }
+           restBtn.style.display = "none";  
+          }
 
-      popUp.style.display = "block";
+          popUp.style.display = "block";
       clearInterval(timerId);
       timerId = null;
-   if (mode === "work") {
-    mode = "break";
-    time = breakTime;
-  } else {
-    mode = "work";
-    time = workTime;
-    }
   }
     updateDisplay();
   }, 1000);
+}
+
+startBtn.addEventListener("click", () => {
+  if (timerId !== null) return;
+
+  popUp.style.display = "none";
+  mode = "work";
+    startTimer();
 });
 
 restBtn.addEventListener("click", () => {
@@ -59,29 +62,8 @@ restBtn.addEventListener("click", () => {
   mode = "break";
   time = breakTime;
 
- timerId = setInterval(() => {
-    time--;
-    if (time <= 0) {
+  startTimer();
 
-       if (mode === "work") {
-          popupMessage.textContent = "作業時間終了！";
-           } else {
-           popupMessage.textContent = "休憩時間終了！";
-           }
-
-      popUp.style.display = "block";
-      clearInterval(timerId);
-      timerId = null;
-   if (mode === "work") {
-    mode = "break";
-    time = breakTime;
-  } else {
-    mode = "work";
-    time = workTime;
-    }
-  }
-    updateDisplay();
-  }, 1000);
 });
 
 
@@ -96,5 +78,16 @@ resetBtn.addEventListener("click", () => {
   time = workTime;
   mode = "work";
  
+  updateDisplay();
+});
+
+finishBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  timerId = null;
+  popUp.style.display = "none";
+
+  mode = "work";
+  time = workTime;
+
   updateDisplay();
 });
