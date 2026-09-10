@@ -1,22 +1,32 @@
 body {
   font-family: sans-serif;
-  background: #22222250;
-  color: rgba(255, 255, 255, 0.596);
+  background: gray;
+  color: white;
   text-align: center;
   margin-top: 100px;
+}
+
+input {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  background: transparent;
+  color: white;
+  border: none;
 }
 
 #timer {
   font-size: 80px;
   margin: 20px;
   font-weight: bold;
-  color: red !important;
+  color: whitesmoke;
 }
 
 button {
   padding: 10px 20px;
   margin: 5px;
   font-size: 16px;
+  border-radius: 9999px;
 }
 
 #popup {
