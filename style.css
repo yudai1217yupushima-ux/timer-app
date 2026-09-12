@@ -27,9 +27,18 @@ button {
   margin: 5px;
   font-size: 16px;
   border-radius: 9999px;
+  border: none;
 }
 
 #popup {
   display: none;
   text-align: center;
+}
+
+button:hover {
+  background: darkgray;
+}
+
+button:active {
+  transform: translateY(2px);
 }
