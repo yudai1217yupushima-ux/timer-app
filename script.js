@@ -1,5 +1,7 @@
-const workTime = 10;
-const breakTime = 5 ;
+let workTime ;
+let breakTime ;
+const time25Btn = document.getElementById("time25");
+const time50Btn = document.getElementById("time50");
 let mode = "work" ; 
 let time = workTime ;
 let timerId = null;
