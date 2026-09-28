@@ -2,6 +2,24 @@ let workTime ;
 let breakTime ;
 const time25Btn = document.getElementById("time25");
 const time50Btn = document.getElementById("time50");
+const timeSelect = document.getElementById("timeSelect");
+
+time25Btn.addEventListener("click", () => {
+  workTime = 25 * 60;
+  breakTime = 5 * 60;
+  time = workTime;
+  updateDisplay();
+  timeSelect.style.display = "none";
+});
+
+time50Btn.addEventListener("click", () => {
+  workTime = 50 * 60;
+  breakTime = 10 * 60;
+  time = workTime;
+  updateDisplay();
+  timeSelect.style.display = "none";
+});
+
 let mode = "work" ; 
 let time = workTime ;
 let timerId = null;
@@ -81,6 +99,7 @@ resetBtn.addEventListener("click", () => {
   mode = "work";
  
   updateDisplay();
+  timeSelect.style.display = "block";
 });
 
 finishBtn.addEventListener("click", () => {
@@ -92,4 +111,5 @@ finishBtn.addEventListener("click", () => {
   time = workTime;
 
   updateDisplay();
+  timeSelect.style.display = "block";
 });
