@@ -73,6 +73,7 @@ startBtn.addEventListener("click", () => {
   if (timerId !== null) return;
 
   popUp.style.display = "none";
+  if (time <= 0) time = workTime;
   mode = "work";
     startTimer();
 });
