@@ -42,3 +42,36 @@ button:hover {
 button:active {
   transform: translateY(2px);
 }
+
+#timeSelect {
+  margin: 20px;
+}
+
+#timeSelect p {
+  margin: 0 0 15px;
+  font-size: 14px;
+}
+
+#timeSelect > p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#time25,
+#time50 {
+  font-size: 20px;
+  padding: 12px 30px;
+}
+
+#timeSelect {
+  margin: 20px;
+}
+
+.timeOption {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#timeSelect {
+  text-align: center;
+}
