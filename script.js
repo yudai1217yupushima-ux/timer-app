@@ -14,67 +14,77 @@ const set7Btn = document.getElementById("set7");
 const set8Btn = document.getElementById("set8");
 const set9Btn = document.getElementById("set9");
 let totalSets;
+let timeSelected = false;
+
+function checkSelection() {
+  if (timeSelected && totalSets !== undefined) {
+    timeSelect.style.display = "none";
+  }
+}
+
 let currentSet = 0;
 
 set1Btn.addEventListener("click", () => {
   totalSets = 1;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set2Btn.addEventListener("click", () => {
   totalSets = 2;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set3Btn.addEventListener("click", () => {
   totalSets = 3;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set4Btn.addEventListener("click", () => {
   totalSets = 4;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set5Btn.addEventListener("click", () => {
   totalSets = 5;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set6Btn.addEventListener("click", () => {
   totalSets = 6;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set7Btn.addEventListener("click", () => {
   totalSets = 7;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set8Btn.addEventListener("click", () => {
   totalSets = 8;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 set9Btn.addEventListener("click", () => {
   totalSets = 9;
-  timeSelect.style.display = "none";
+   checkSelection();
 });
 
 time25Btn.addEventListener("click", () => {
   workTime = 25 * 60;
   breakTime = 5 * 60;
   time = workTime;
+  timeSelected = true;
   updateDisplay();
-  timeSelect.style.display = "none";
+  
 });
 
 time50Btn.addEventListener("click", () => {
   workTime = 50 * 60;
   breakTime = 10 * 60;
   time = workTime;
+  timeSelected = true;
   updateDisplay();
-  timeSelect.style.display = "none";
+  
 });
 
 let mode = "work" ; 
@@ -110,28 +120,27 @@ function startTimer() {
 timerId = setInterval(() => {
     time--;
     if (time <= 0) {
-     if (mode === "work") {
-          popupMessage.textContent = "作業時間終了！";
-          restBtn.style.display = "inline-block";  
-        } else {
-                 popupMessage.textContent = "休憩時間終了！";
+  clearInterval(timerId);
+  timerId = null;
 
-                 if (currentSet < totalSets) {
-                      mode = "work";
-                       time = workTime;
-                       popupMessage.textContent = `${currentSet}セット目開始！`;
-                        startTimer();
-                      } else {
-                    popupMessage.textContent = "全セット終了！";
-                        }
-
-                      restBtn.style.display = "none"; 
-                    }
-
-          popUp.style.display = "block";
-      clearInterval(timerId);
-      timerId = null;
+  if (mode === "work") {
+    popupMessage.textContent = "作業時間終了！";
+    restBtn.style.display = "inline-block";
+    popUp.style.display = "block";
+  } else {
+    if (currentSet < totalSets) {
+      currentSet++;
+      mode = "work";
+      time = workTime;
+      updateDisplay();
+      startTimer();
+    } else {
+      popupMessage.textContent = "全セット終了！";
+      restBtn.style.display = "none";
+      popUp.style.display = "block";
+    }
   }
+}
     updateDisplay();
   }, 1000);
 }
@@ -150,8 +159,7 @@ restBtn.addEventListener("click", () => {
   popUp.style.display = "none";
   mode = "break";
   time = breakTime;
-  currentSet++;
-
+  
   startTimer();
 
 });
