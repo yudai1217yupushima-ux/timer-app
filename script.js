@@ -124,10 +124,11 @@ timerId = setInterval(() => {
   timerId = null;
 
   if (mode === "work") {
-    popupMessage.textContent = "作業時間終了！";
-    restBtn.style.display = "inline-block";
-    popUp.style.display = "block";
-  } else {
+  mode = "break";
+  time = breakTime;
+  updateDisplay();
+  startTimer();
+}else {
     if (currentSet < totalSets) {
       currentSet++;
       mode = "work";
@@ -150,8 +151,6 @@ startBtn.addEventListener("click", () => {
 
   popUp.style.display = "none";
   if (time <= 0) time = workTime;
-  mode = "work";
-  currentSet = 1;
     startTimer();
 });
 
